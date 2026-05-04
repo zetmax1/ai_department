@@ -1,26 +1,53 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LanguageProvider } from "@/i18n/LanguageContext";
+import Header from "@/components/landing/Header";
+import Hero from "@/components/landing/Hero";
+import WhySection from "@/components/landing/WhySection";
+import CareersSection from "@/components/landing/CareersSection";
+import CurriculumSection from "@/components/landing/CurriculumSection";
+import FacilitiesSection from "@/components/landing/FacilitiesSection";
+import VisionSection from "@/components/landing/VisionSection";
+import TestimonialsSection from "@/components/landing/TestimonialsSection";
+import ApplySection from "@/components/landing/ApplySection";
+import Footer from "@/components/landing/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Sun'iy intellekt yo'nalishi — yangi universitet dasturi" },
+      {
+        name: "description",
+        content:
+          "Sun'iy intellekt bo'yicha zamonaviy universitet dasturi: kuchli laboratoriyalar, real kasblar va kelajakka tayyor ta'lim. Uzbek, English, Russian.",
+      },
+      { property: "og:title", content: "Artificial intelligence — university program" },
+      {
+        property: "og:description",
+        content: "A modern university program in artificial intelligence — labs, careers and a future-ready curriculum.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <Hero />
+          <WhySection />
+          <CareersSection />
+          <CurriculumSection />
+          <FacilitiesSection />
+          <VisionSection />
+          <TestimonialsSection />
+          <ApplySection />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
+  );
 }
