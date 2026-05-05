@@ -104,29 +104,21 @@ export default function NeuralNetCanvas() {
     setEnabled(true);
   }, []);
 
-  if (!enabled) {
-    return (
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-mesh"
-      />
-    );
-  }
+  if (!enabled) return null;
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
   return (
-    <div aria-hidden className="absolute inset-0 -z-10">
-      <div className="absolute inset-0 bg-mesh" />
+    <div aria-hidden className="absolute inset-0">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 60 }}
         dpr={[1, isMobile ? 1.25 : 1.75]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        style={{ width: "100%", height: "100%" }}
       >
         <ambientLight intensity={0.6} />
         <Network count={isMobile ? 45 : 80} />
       </Canvas>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background" />
     </div>
   );
 }
