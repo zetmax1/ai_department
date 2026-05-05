@@ -1,24 +1,14 @@
-import { lazy, Suspense, useEffect, useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-const NeuralNetCanvas = lazy(() => import("./NeuralNetCanvas"));
-
 export default function Hero() {
   const { t } = useLang();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   return (
     <section
       id="top"
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24"
     >
-      {mounted && (
-        <Suspense fallback={<div aria-hidden className="absolute inset-0 -z-10 bg-mesh" />}>
-          <NeuralNetCanvas />
-        </Suspense>
-      )}
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl animate-fade-up">
