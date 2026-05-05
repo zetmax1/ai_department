@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
+import BackgroundScene from "@/components/landing/BackgroundScene";
 import WhySection from "@/components/landing/WhySection";
 import CareersSection from "@/components/landing/CareersSection";
 import CurriculumSection from "@/components/landing/CurriculumSection";
