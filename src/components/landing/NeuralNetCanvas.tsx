@@ -65,20 +65,43 @@ function Network({ count = 70 }: { count?: number }) {
   const mouse = useRef({ x: 0, y: 0 });
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 0.6;
-      mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 0.4;
+      mouse.current.x = e.clientX / window.innerWidth - 0.5;
+      mouse.current.y = e.clientY / window.innerHeight - 0.5;
+    };
+    const onTouch = (e: TouchEvent) => {
+      if (!e.touches[0]) return;
+      mouse.current.x = e.touches[0].clientX / window.innerWidth - 0.5;
+      mouse.current.y = e.touches[0].clientY / window.innerHeight - 0.5;
     };
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onTouch, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouch);
+    };
   }, []);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (!groupRef.current) return;
-    groupRef.current.rotation.y += delta * 0.05;
-    const tx = mouse.current.x * 0.4;
-    const ty = -mouse.current.y * 0.3;
-    groupRef.current.rotation.x += (ty - groupRef.current.rotation.x) * 0.04;
-    groupRef.current.position.x += (tx - groupRef.current.position.x) * 0.04;
+    const t = state.clock.elapsedTime;
+    // gentle autonomous drift
+    groupRef.current.rotation.y += delta * 0.08;
+    groupRef.current.rotation.z = Math.sin(t * 0.2) * 0.05;
+
+    // stronger mouse parallax
+    const targetRotY = mouse.current.x * 0.9;
+    const targetRotX = -mouse.current.y * 0.7;
+    const targetPosX = mouse.current.x * 1.2;
+    const targetPosY = -mouse.current.y * 0.8;
+
+    groupRef.current.rotation.x += (targetRotX - groupRef.current.rotation.x) * 0.06;
+    groupRef.current.rotation.y += (targetRotY - (groupRef.current.rotation.y % (Math.PI * 2))) * 0.02;
+    groupRef.current.position.x += (targetPosX - groupRef.current.position.x) * 0.06;
+    groupRef.current.position.y += (targetPosY - groupRef.current.position.y) * 0.06;
+
+    // subtle breathing scale
+    const s = 1 + Math.sin(t * 0.6) * 0.03;
+    groupRef.current.scale.setScalar(s);
   });
 
   return (
