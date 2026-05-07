@@ -9,7 +9,7 @@ import CurriculumSection from "@/components/landing/CurriculumSection";
 import FacilitiesSection from "@/components/landing/FacilitiesSection";
 import VisionSection from "@/components/landing/VisionSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
-import ApplySection from "@/components/landing/ApplySection";
+// import ApplySection from "@/components/landing/ApplySection"; // commented out
 import Footer from "@/components/landing/Footer";
 
 export const Route = createFileRoute("/")({
@@ -46,7 +46,7 @@ function Index() {
           <FacilitiesSection />
           <VisionSection />
           <TestimonialsSection />
-          <ApplySection />
+          {/* <ApplySection /> */}
         </main>
         <Footer />
       </div>

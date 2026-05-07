@@ -2,7 +2,6 @@ import { useState } from "react";
 import { z } from "zod";
 import { useLang } from "@/i18n/LanguageContext";
 import { LANG_LABELS } from "@/i18n/translations";
-import { supabase } from "@/integrations/supabase/client";
 import { Check, Loader2, Send } from "lucide-react";
 
 const schema = z.object({
@@ -38,21 +37,11 @@ export default function ApplySection() {
     }
 
     setState("sending");
-    const { error } = await supabase.from("applications").insert({
-      full_name: parsed.data.full_name,
-      email: parsed.data.email,
-      phone: parsed.data.phone || null,
-      preferred_language: parsed.data.preferred_language || lang,
-      message: parsed.data.message || null,
-    });
-
-    if (error) {
-      setErrorMsg(t.apply.error);
-      setState("error");
-      return;
-    }
-    setState("success");
-    e.currentTarget.reset();
+    // Simulate form submission - just show success
+    setTimeout(() => {
+      setState("success");
+      e.currentTarget.reset();
+    }, 800);
   };
 
   return (

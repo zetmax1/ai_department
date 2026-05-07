@@ -14,7 +14,7 @@ export default function WhySection() {
           <p className="mt-4 text-muted-foreground">{t.why.intro}</p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {t.why.cards.map((c, i) => {
             const Icon = ICONS[i % ICONS.length];
             return (

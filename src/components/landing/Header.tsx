@@ -32,10 +32,10 @@ export default function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-2 font-display text-base font-semibold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-soft">
+          {/* <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-soft">
             <Sparkles className="h-4 w-4" />
-          </span>
-          <span className="text-foreground">AI program</span>
+          </span> */}
+          <span className="text-foreground">AI department</span>
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -52,12 +52,6 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 md:flex">
           <LangSwitcher />
-          <a
-            href="#apply"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-soft transition-transform hover:scale-[1.03]"
-          >
-            {t.nav.apply}
-          </a>
         </div>
 
         <button
@@ -84,13 +78,6 @@ export default function Header() {
             ))}
             <div className="flex items-center justify-between pt-2">
               <LangSwitcher />
-              <a
-                href="#apply"
-                onClick={() => setOpen(false)}
-                className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-              >
-                {t.nav.apply}
-              </a>
             </div>
           </div>
         </div>

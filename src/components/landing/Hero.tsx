@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl animate-fade-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/70 px-3 py-1 text-xs uppercase tracking-wider text-muted-foreground backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5 text-accent" />
+            {/* <Sparkles className="h-3.5 w-3.5 text-accent" /> */}
             {t.hero.eyebrow}
           </span>
           <h1 className="mt-6 font-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
@@ -30,13 +30,6 @@ export default function Hero() {
               className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-5 py-3 text-sm font-medium text-foreground backdrop-blur transition-all hover:bg-card hover:shadow-soft"
             >
               {t.hero.learn}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="#apply"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-glow transition-all hover:scale-[1.03]"
-            >
-              {t.hero.apply}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>

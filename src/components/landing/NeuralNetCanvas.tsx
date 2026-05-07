@@ -13,6 +13,8 @@ function Network({ count = 70 }: { count?: number }) {
   const groupRef = useRef<THREE.Group>(null);
   const pointsRef = useRef<THREE.Points>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
+  // Manual elapsed time — avoids the deprecated THREE.Clock (r168+)
+  const elapsed = useRef(0);
 
   const nodes: NodeData[] = useMemo(() => {
     const arr: NodeData[] = [];
@@ -81,9 +83,12 @@ function Network({ count = 70 }: { count?: number }) {
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (!groupRef.current) return;
-    const t = state.clock.elapsedTime;
+    // Accumulate our own time so we never touch the deprecated THREE.Clock
+    elapsed.current += delta;
+    const t = elapsed.current;
+
     // gentle autonomous drift
     groupRef.current.rotation.y += delta * 0.08;
     groupRef.current.rotation.z = Math.sin(t * 0.2) * 0.05;
