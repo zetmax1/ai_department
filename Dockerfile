@@ -4,8 +4,8 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Install dependencies first (layer-cached separately from source)
-COPY package.json package-lock.json ./
-RUN npm ci --frozen-lockfile
+COPY package.json package-lock.json* ./
+RUN npm ci || npm install
 
 # Copy source and build
 COPY . .
